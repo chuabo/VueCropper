@@ -13,12 +13,13 @@
         </div>
         <input type="hidden" v-model="formValidate.mainImage" placeholder="请添加封面">
       </el-form-item>
+      <el-button @click="showBigPic">查看大封面</el-button>
     </el-form>
-    <!-- 剪裁组件弹窗 -->
+    <!-- 剪裁组件弹窗 width="950px"-->
     <el-dialog
         title="裁切封面"
         :visible.sync="cropperModel"
-        width="950px"
+        width="90%"
         center
        >
      <cropper-image
@@ -53,7 +54,7 @@ export default {
         ],
       },
       //裁切图片参数
-      cropperModel:false,
+      cropperModel: false,
       cropperName:'',
       imgName: '',
       imgVisible: false
@@ -63,6 +64,7 @@ export default {
     //封面设置
     uploadPicture(name){
       this.cropperName = name;
+      this.imgName = name;
       this.cropperModel = true;
     },
     //图片上传成功后
@@ -75,6 +77,9 @@ export default {
           break;
       }
       this.cropperModel = false;
+    },
+    showBigPic() {console.log(this.imgVisible);
+      this.imgVisible = !this.imgVisible
     }
   }
 }
